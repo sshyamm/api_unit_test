@@ -31,5 +31,30 @@ class UserModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getUserTypeByEmail($user_name) {
+        $query = "SELECT user_type FROM users WHERE user_name = :user_name";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_name", $user_name);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_COLUMN);
+    }
+
+    public function loginUser($user_name, $user_password) {
+        // Retrieve user by email
+        $user = $this->getUserByEmail($user_name);
+
+        // Check if user exists
+        if (!$user) {
+            return false; // User not found
+        }
+
+        // Verify password
+        if (password_verify($user_password, $user['user_password'])) {
+            return true; // Password is correct
+        } else {
+            return false; // Incorrect password
+        }
+    }
+
 }
 ?>
