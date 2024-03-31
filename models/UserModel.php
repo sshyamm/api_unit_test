@@ -14,7 +14,7 @@ class UserModel {
             return false; // User already exists
         }
 
-        // Create user in the database
+        // Create user in the database forcommon user
         $query = "INSERT INTO users (user_name, user_password) VALUES (:user_name, :user_password)";
         $stmt = $this->db->prepare($query);
         $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
