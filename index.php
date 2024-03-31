@@ -27,6 +27,20 @@ switch ($action) {
             echo json_encode(array("success" => false, "message" => "Method not allowed."));
         }
         break;
+    case 'login':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Get data from decoded JSON
+            $user_name = isset($data['user_name']) ? $data['user_name'] : '';
+            $user_password = isset($data['user_password']) ? $data['user_password'] : '';
+
+            // Call UserController method to perform login
+            echo $userController->loginUser($user_name, $user_password);
+        } else {
+            // Method not allowed
+            http_response_code(405);
+            echo json_encode(array("success" => false, "message" => "Method not allowed."));
+        }
+        break;
     default:
         // Invalid endpoint
         http_response_code(404);
