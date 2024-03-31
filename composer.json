@@ -1,0 +1,17 @@
+{
+    "name": "shyam/api_unit_test",
+    "autoload": {
+        "psr-4": {
+            "Shyam\\ApiUnitTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "shyam",
+            "email": "shyam27sps@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    }
+}
