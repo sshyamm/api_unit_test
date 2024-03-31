@@ -4,6 +4,7 @@
     colors="true"
     verbose="true"
     stopOnFailure="true"
+    cacheResult ="false"
 >
     <testsuites>
         <testsuite name="PHP Test Suit">
