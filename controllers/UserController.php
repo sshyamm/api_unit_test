@@ -87,5 +87,39 @@ class UserController {
         }
         return true;
     }
+    public function getUserProfile($user_id) {
+        // Validate input
+        if (empty($user_id)) {
+            return json_encode(array("success" => false, "message" => "User ID is required."));
+        }
+    
+        // Retrieve user type from UserModel
+        $user_type = $this->model->getUserTypeById($user_id);
+    
+        // Check if user type exists
+        if (!$user_type) {
+            return json_encode(array("success" => false, "message" => "User not found."));
+        }
+    
+        // Retrieve profile details based on user type
+        switch ($user_type) {
+            case 'Student':
+                $profile = $this->model->getStudentProfileByUserId($user_id);
+                break;
+            case 'Teacher':
+                $profile = $this->model->getTeacherProfileByUserId($user_id);
+                break;
+            default:
+                return json_encode(array("success" => false, "message" => "Invalid user type."));
+        }
+    
+        // Check if profile exists
+        if (!$profile) {
+            return json_encode(array("success" => false, "message" => "Profile not found."));
+        }
+    
+        // Return the profile details
+        return json_encode(array("success" => true, "profile" => $profile));
+    }
 }
 ?>
