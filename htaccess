@@ -4,3 +4,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^api/user/register/?$ index.php?action=register [QSA,L]
 RewriteRule ^api/user/login/?$ index.php?action=login [QSA,L]
 RewriteRule ^api/user/([0-9]+)/profile/?$ index.php?user_id=$1&action=profile [QSA,L]
+RewriteRule ^api/user/([0-9]+)/edit_student/?$ index.php?user_parent_id=$1&action=edit_student [QSA,L]

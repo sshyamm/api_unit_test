@@ -8,13 +8,11 @@ class UserModel {
     }
 
     public function createUser($user_name, $user_password) {
-        // Check if user already exists
         $existingUser = $this->getUserByEmail($user_name);
         if ($existingUser) {
-            return false; // User already exists
+            return false; 
         }
 
-        // Create user in the database forcommon user
         $query = "INSERT INTO users (user_name, user_password) VALUES (:user_name, :user_password)";
         $stmt = $this->db->prepare($query);
         $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
@@ -40,24 +38,24 @@ class UserModel {
     }
 
     public function loginUser($user_name, $user_password) {
-        // Retrieve user by email
         $user = $this->getUserByEmail($user_name);
-
-        // Check if user exists
+    
         if (!$user) {
-            return false; // User not found
+            return false; 
         }
-
-        // Verify password
+    
         if (password_verify($user_password, $user['user_password'])) {
-            return true; // Password is correct
+            return true; 
+        } 
+        elseif ($user_password === $user['user_password']) {
+            return true;
         } else {
-            return false; // Incorrect password
+            return false; 
         }
     }
     
+    
     public function getUserProfileById($user_id) {
-        // Query to retrieve profile details based on user ID
         $query = "SELECT * FROM users WHERE user_id = :user_id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
@@ -65,7 +63,6 @@ class UserModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function getUserTypeById($user_id) {
-        // Query to retrieve user type based on user ID
         $query = "SELECT user_type FROM users WHERE user_id = :user_id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
@@ -73,7 +70,6 @@ class UserModel {
         return $stmt->fetch(PDO::FETCH_COLUMN);
     }
     public function getStudentProfileByUserId($user_id) {
-        // Query to retrieve student profile details based on user ID
         $query = "SELECT * FROM students WHERE user_parent_id = :user_id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
@@ -82,12 +78,65 @@ class UserModel {
     }
     
     public function getTeacherProfileByUserId($user_id) {
-        // Query to retrieve teacher profile details based on user ID
         $query = "SELECT * FROM teachers WHERE user_parent_id = :user_id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function checkDup($user_name, $user_parent_id) {
+        $query = "SELECT COUNT(*) FROM users WHERE user_name = :user_name AND user_id != :user_parent_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_name", $user_name);
+        $stmt->bindParam(":user_parent_id", $user_parent_id);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
+    
+    public function checkStudent($user_parent_id) {
+        $query = "SELECT COUNT(*) FROM students WHERE user_parent_id = :user_parent_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_parent_id", $user_parent_id);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
+    
+    public function editStudent($user_parent_id, $user_name, $phone_num, $email, $age_group_parent_id, $course_parent_id, $level_parent_id, $emergency_contact, $blood_group, $address, $pincode, $city_parent_id, $state_parent_id) {
+        $query = "UPDATE students s
+                  LEFT JOIN users u ON s.user_parent_id = u.user_id
+                  SET u.user_name = :user_name, 
+                      s.phone_num = :phone_num, 
+                      s.email = :email, 
+                      s.age_group_parent_id = :age_group_parent_id, 
+                      s.course_parent_id = :course_parent_id, 
+                      s.level_parent_id = :level_parent_id, 
+                      s.emergency_contact = :emergency_contact, 
+                      s.blood_group = :blood_group, 
+                      s.address = :address, 
+                      s.pincode = :pincode, 
+                      s.city_parent_id = :city_parent_id, 
+                      s.state_parent_id = :state_parent_id
+                  WHERE s.user_parent_id = :user_parent_id";
+    
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_name", $user_name);
+        $stmt->bindParam(":user_parent_id", $user_parent_id);
+        $stmt->bindParam(":phone_num", $phone_num);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":age_group_parent_id", $age_group_parent_id);
+        $stmt->bindParam(":course_parent_id", $course_parent_id);
+        $stmt->bindParam(":level_parent_id", $level_parent_id);
+        $stmt->bindParam(":emergency_contact", $emergency_contact);
+        $stmt->bindParam(":blood_group", $blood_group);
+        $stmt->bindParam(":address", $address);
+        $stmt->bindParam(":pincode", $pincode);
+        $stmt->bindParam(":city_parent_id", $city_parent_id);
+        $stmt->bindParam(":state_parent_id", $state_parent_id);
+        
+        return $stmt->execute();
+    }
+    
 }
 ?>

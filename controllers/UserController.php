@@ -7,28 +7,24 @@ class UserController {
     private $model;
 
     public function __construct() {
-        global $db; // Access the global database connection
-        $this->model = new UserModel($db); // Pass the database connection to the UserModel constructor
+        global $db;
+        $this->model = new UserModel($db); 
     }
 
     public function createUser($user_name, $user_password) {
-        // Validate input
         if (empty($user_name) || empty($user_password)) {
             return json_encode(array("success" => false, "message" => "Username and password are required."));
         }
 
-        // Check if user already exists
         $existingUser = $this->model->getUserByEmail($user_name);
         if ($existingUser) {
             return json_encode(array("success" => false, "message" => "Username already exists."));
         }
 
-        // Check password strength
         if (!$this->isStrongPassword($user_password)) {
             return json_encode(array("success" => false, "message" => "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."));
         }
 
-        // Create user
         $result = $this->model->createUser($user_name, $user_password);
         
         if ($result) {
@@ -38,34 +34,24 @@ class UserController {
         }
     }
     public function loginUser($user_name, $user_password) {
-        // Validate input
         if (empty($user_name) || empty($user_password)) {
             return json_encode(array("success" => false, "message" => "Username and password are required."));
         }
     
-        // Retrieve user by email
         $user = $this->model->getUserByEmail($user_name);
     
-        // Check if user exists
         if (!$user) {
             return json_encode(array("success" => false, "message" => "User not found."));
         }
-
+    
         $user_type = $this->model->getUserTypeByEmail($user_name);
         if ($user_type === 'None') {
             return json_encode(array("success" => false, "message" => "You are not approved. Please contact admin."));
         }
     
-        // Verify password
-        if (password_verify($user_password, $user['user_password'])) {
+        if ($this->model->loginUser($user_name, $user_password)) {
             $user_id = $user['user_id'];
             $user_type = $user['user_type'];
-            return json_encode(array(
-                "success" => true,
-                "message" => "Logged in successfully with ID: $user_id, name: $user_name, type: $user_type"
-            ));
-        } elseif ($user_password === $user['user_password']) {
-            // Password is plaintext and matches
             return json_encode(array(
                 "success" => true,
                 "message" => "Logged in successfully with ID: $user_id, name: $user_name, type: $user_type"
@@ -73,11 +59,9 @@ class UserController {
         } else {
             return json_encode(array("success" => false, "message" => "Incorrect password."));
         }
-    }
+    }    
 
     private function isStrongPassword($user_password) {
-        // Implement your strong password checking logic here
-        // For example: at least 8 characters, contain at least one uppercase letter, one lowercase letter, one number, and one special character
         if (strlen($user_password) < 8 ||
             !preg_match("/[A-Z]/", $user_password) ||
             !preg_match("/[a-z]/", $user_password) ||
@@ -88,20 +72,16 @@ class UserController {
         return true;
     }
     public function getUserProfile($user_id) {
-        // Validate input
         if (empty($user_id)) {
             return json_encode(array("success" => false, "message" => "User ID is required."));
         }
     
-        // Retrieve user type from UserModel
         $user_type = $this->model->getUserTypeById($user_id);
     
-        // Check if user type exists
         if (!$user_type) {
             return json_encode(array("success" => false, "message" => "User not found."));
         }
     
-        // Retrieve profile details based on user type
         switch ($user_type) {
             case 'Student':
                 $profile = $this->model->getStudentProfileByUserId($user_id);
@@ -113,13 +93,34 @@ class UserController {
                 return json_encode(array("success" => false, "message" => "Invalid user type."));
         }
     
-        // Check if profile exists
         if (!$profile) {
             return json_encode(array("success" => false, "message" => "Profile not found."));
         }
     
-        // Return the profile details
         return json_encode(array("success" => true, "profile" => $profile));
+    }
+    public function editStudent($user_parent_id, $user_name, $phone_num, $email, $age_group_parent_id, $course_parent_id, $level_parent_id, $emergency_contact, $blood_group, $address, $pincode, $city_parent_id, $state_parent_id) {
+        if (empty($user_parent_id)) {
+            return json_encode(array("success" => false, "message" => "User ID is required."));
+        }
+    
+        $existence = $this->model->checkStudent($user_parent_id);
+        if (!$existence) {
+            return json_encode(array("success" => false, "message" => "Student not found."));
+        }
+
+        $duplicate = $this->model->checkDup($user_name, $user_parent_id);
+        if ($duplicate) {
+            return json_encode(array("success" => false, "message" => "Student username already exists."));
+        }
+
+        $result = $this->model->editStudent($user_parent_id, $user_name, $phone_num, $email, $age_group_parent_id, $course_parent_id, $level_parent_id, $emergency_contact, $blood_group, $address, $pincode, $city_parent_id, $state_parent_id);
+    
+        if ($result) {
+            return json_encode(array("success" => true, "message" => "Student details updated successfully."));
+        } else {
+            return json_encode(array("success" => false, "message" => "Failed to update student details."));
+        }
     }
 }
 ?>
