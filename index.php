@@ -41,6 +41,19 @@ switch ($action) {
             echo json_encode(array("success" => false, "message" => "Method not allowed."));
         }
         break;
+    case 'profile':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Get data from decoded JSON
+            $user_id = isset($data['user_id']) ? $data['user_id'] : '';
+
+            // Call UserController method to fetch profile
+            echo $userController->getUserProfile($user_id);
+        } else {
+            // Method not allowed
+            http_response_code(405);
+            echo json_encode(array("success" => false, "message" => "Method not allowed."));
+        }
+        break;
     default:
         // Invalid endpoint
         http_response_code(404);

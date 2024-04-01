@@ -55,6 +55,39 @@ class UserModel {
             return false; // Incorrect password
         }
     }
-
+    
+    public function getUserProfileById($user_id) {
+        // Query to retrieve profile details based on user ID
+        $query = "SELECT * FROM users WHERE user_id = :user_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function getUserTypeById($user_id) {
+        // Query to retrieve user type based on user ID
+        $query = "SELECT user_type FROM users WHERE user_id = :user_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_COLUMN);
+    }
+    public function getStudentProfileByUserId($user_id) {
+        // Query to retrieve student profile details based on user ID
+        $query = "SELECT * FROM students WHERE user_parent_id = :user_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function getTeacherProfileByUserId($user_id) {
+        // Query to retrieve teacher profile details based on user ID
+        $query = "SELECT * FROM teachers WHERE user_parent_id = :user_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
