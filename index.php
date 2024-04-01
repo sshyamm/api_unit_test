@@ -66,6 +66,23 @@ switch ($action) {
             echo json_encode(array("success" => false, "message" => "Method not allowed."));
         }
         break;
+    case 'edit_teacher':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user_parent_id = isset($data['user_parent_id']) ? $data['user_parent_id'] : '';
+            $user_name = isset($data['user_name']) ? $data['user_name'] : '';
+            $teacher_phone = isset($data['teacher_phone']) ? $data['teacher_phone'] : '';
+            $teacher_email = isset($data['teacher_email']) ? $data['teacher_email'] : '';
+            $teacher_address = isset($data['teacher_address']) ? $data['teacher_address'] : '';
+            $course_parent_id = isset($data['course_parent_id']) ? $data['course_parent_id'] : '';
+            $qualification = isset($data['qualification']) ? $data['qualification'] : '';
+            $teacher_exp = isset($data['teacher_exp']) ? $data['teacher_exp'] : '';
+
+            echo $userController->editTeacher($user_parent_id, $user_name, $teacher_phone, $teacher_email, $teacher_address, $course_parent_id, $qualification, $teacher_exp);
+        } else {
+            http_response_code(405);
+            echo json_encode(array("success" => false, "message" => "Method not allowed."));
+        }
+        break;
     default:
         http_response_code(404);
         echo json_encode(array("success" => false, "message" => "Invalid endpoint."));

@@ -111,7 +111,7 @@ class UserController {
 
         $duplicate = $this->model->checkDup($user_name, $user_parent_id);
         if ($duplicate) {
-            return json_encode(array("success" => false, "message" => "Student username already exists."));
+            return json_encode(array("success" => false, "message" => "Username already exists."));
         }
 
         $result = $this->model->editStudent($user_parent_id, $user_name, $phone_num, $email, $age_group_parent_id, $course_parent_id, $level_parent_id, $emergency_contact, $blood_group, $address, $pincode, $city_parent_id, $state_parent_id);
@@ -120,6 +120,29 @@ class UserController {
             return json_encode(array("success" => true, "message" => "Student details updated successfully."));
         } else {
             return json_encode(array("success" => false, "message" => "Failed to update student details."));
+        }
+    }
+    public function editTeacher($user_parent_id, $user_name, $teacher_phone, $teacher_email, $teacher_address, $course_parent_id, $qualification, $teacher_exp) {
+        if (empty($user_parent_id)) {
+            return json_encode(array("success" => false, "message" => "User ID is required."));
+        }
+    
+        $existence = $this->model->checkTeacher($user_parent_id);
+        if (!$existence) {
+            return json_encode(array("success" => false, "message" => "Teacher not found."));
+        }
+
+        $duplicate = $this->model->checkDup($user_name, $user_parent_id);
+        if ($duplicate) {
+            return json_encode(array("success" => false, "message" => "Username already exists."));
+        }
+
+        $result = $this->model->editTeacher($user_parent_id, $user_name, $teacher_phone, $teacher_email, $teacher_address, $course_parent_id, $qualification, $teacher_exp);
+    
+        if ($result) {
+            return json_encode(array("success" => true, "message" => "Teacher details updated successfully."));
+        } else {
+            return json_encode(array("success" => false, "message" => "Failed to update teacher details."));
         }
     }
 }

@@ -102,6 +102,15 @@ class UserModel {
         $count = $stmt->fetchColumn();
         return $count > 0;
     }
+
+    public function checkTeacher($user_parent_id) {
+        $query = "SELECT COUNT(*) FROM teachers WHERE user_parent_id = :user_parent_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_parent_id", $user_parent_id);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
     
     public function editStudent($user_parent_id, $user_name, $phone_num, $email, $age_group_parent_id, $course_parent_id, $level_parent_id, $emergency_contact, $blood_group, $address, $pincode, $city_parent_id, $state_parent_id) {
         $query = "UPDATE students s
@@ -134,6 +143,31 @@ class UserModel {
         $stmt->bindParam(":pincode", $pincode);
         $stmt->bindParam(":city_parent_id", $city_parent_id);
         $stmt->bindParam(":state_parent_id", $state_parent_id);
+        
+        return $stmt->execute();
+    }
+
+    public function editTeacher($user_parent_id, $user_name, $teacher_phone, $teacher_email, $teacher_address, $course_parent_id, $qualification, $teacher_exp) {
+        $query = "UPDATE teachers s
+                  LEFT JOIN users u ON s.user_parent_id = u.user_id
+                  SET u.user_name = :user_name, 
+                      s.teacher_phone = :teacher_phone, 
+                      s.teacher_email = :teacher_email, 
+                      s.teacher_address = :teacher_address, 
+                      s.course_parent_id = :course_parent_id, 
+                      s.qualification = :qualification, 
+                      s.teacher_exp = :teacher_exp
+                  WHERE s.user_parent_id = :user_parent_id";
+    
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_name", $user_name);
+        $stmt->bindParam(":user_parent_id", $user_parent_id);
+        $stmt->bindParam(":teacher_phone", $teacher_phone);
+        $stmt->bindParam(":teacher_email", $teacher_email);
+        $stmt->bindParam(":teacher_address", $teacher_address);
+        $stmt->bindParam(":course_parent_id", $course_parent_id);
+        $stmt->bindParam(":qualification", $qualification);
+        $stmt->bindParam(":teacher_exp", $teacher_exp);
         
         return $stmt->execute();
     }
