@@ -145,5 +145,28 @@ class UserController {
             return json_encode(array("success" => false, "message" => "Failed to update teacher details."));
         }
     }
+
+    public function changePassword($user_name, $user_password) {
+        if (empty($user_name) || empty($user_password)) {
+            return json_encode(array("success" => false, "message" => "Username and password are required."));
+        }
+
+        $existingUser = $this->model->getUserByEmail($user_name);
+        if (!$existingUser) {
+            return json_encode(array("success" => false, "message" => "Username not found."));
+        }
+
+        if (!$this->isStrongPassword($user_password)) {
+            return json_encode(array("success" => false, "message" => "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."));
+        }
+
+        $updatePassword = $this->model->updatePassword($user_name, $user_password);
+        if($updatePassword) {
+            return json_encode(array("success" => true, "message" => "Password updated successfully."));
+        }
+        else {
+            return json_encode(array("success" => false, "message" => "Error updating the password"));
+        }
+    }
 }
 ?>

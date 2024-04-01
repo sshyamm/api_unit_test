@@ -83,6 +83,17 @@ switch ($action) {
             echo json_encode(array("success" => false, "message" => "Method not allowed."));
         }
         break;
+    case 'change_password':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user_name = isset($data['user_name']) ? $data['user_name'] : '';
+            $user_password = isset($data['user_password']) ? $data['user_password'] : '';
+
+            echo $userController->changePassword($user_name, $user_password);
+        } else {
+            http_response_code(405);
+            echo json_encode(array("success" => false, "message" => "Method not allowed."));
+        }
+        break;
     default:
         http_response_code(404);
         echo json_encode(array("success" => false, "message" => "Invalid endpoint."));

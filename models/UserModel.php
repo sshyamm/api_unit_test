@@ -172,5 +172,13 @@ class UserModel {
         return $stmt->execute();
     }
     
+    public function updatePassword($user_name, $user_password) {
+        $query = "UPDATE users SET user_password = :user_password WHERE user_name = :user_name";
+        $stmt = $this->db->prepare($query);
+        $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
+        $stmt->bindParam(":user_name", $user_name);
+        $stmt->bindParam(":user_password", $hashed_password);
+        return $stmt->execute();
+    }
 }
 ?>
