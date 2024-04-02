@@ -1,0 +1,10 @@
+Adding Students to that class rooms
+
+http://localhost/api_unit_test/add_student.php (POST)
+
+Sample Data:
+
+{
+    "class_id": 21,
+    "selected_students": [1, 2, 3]
+}
