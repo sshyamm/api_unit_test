@@ -1,0 +1,21 @@
+For starting the class by action and class_id
+
+http://localhost/api_unit_test/startendClass.php (POST)
+
+Sample Data: 
+
+{
+    "action" : "start",
+    "class_id": 22
+}
+=========================================================
+For ending the class, 
+
+http://localhost/api_unit_test/startendClass.php (POST)
+
+Sample Data: 
+
+{
+    "action" : "end",
+    "class_id": 22
+}
