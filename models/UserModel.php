@@ -70,15 +70,20 @@ class UserModel {
         return $stmt->fetch(PDO::FETCH_COLUMN);
     }
     public function getStudentProfileByUserId($user_id) {
-        $query = "SELECT * FROM students WHERE user_parent_id = :user_id";
+        $query = "SELECT u.user_name, s.*
+                  FROM students s 
+                  INNER JOIN users u ON s.user_parent_id = u.user_id
+                  WHERE s.user_parent_id = :user_id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    
+    }   
     public function getTeacherProfileByUserId($user_id) {
-        $query = "SELECT * FROM teachers WHERE user_parent_id = :user_id";
+        $query = "SELECT u.user_name, t.*
+                  FROM teachers t 
+                  INNER JOIN users u ON t.user_parent_id = u.user_id
+                  WHERE t.user_parent_id = :user_id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
         $stmt->execute();

@@ -1,0 +1,13 @@
+Displaying the class information of that particular user only:
+
+http://localhost/api_unit_test/class_info.php (POST)
+
+{
+    "user_name" : "Ramesh",
+    "user_type" : "Student"
+}
+
+{
+    "user_name" : "Jennie",
+    "user_type" : "Teacher"
+}
