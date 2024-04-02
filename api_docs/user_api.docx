@@ -2,16 +2,19 @@ register:
 
 http://localhost/api_unit_test/index.php (POST)
 
+Sample Data:
+
 {
     "action" : "register",
     "user_name" : "Prakash",
     "user_password" : "Prak@1234"
 }
 ===================================================
-
 login:
 
 http://localhost/api_unit_test/index.php (POST)
+
+Sample Data:
 
 {
     "action" : "login",
@@ -22,6 +25,8 @@ http://localhost/api_unit_test/index.php (POST)
 profile:
 
 http://localhost/api_unit_test/index.php (POST)
+
+Sample Data:
 
 {
     "action" : "profile",
@@ -36,6 +41,8 @@ http://localhost/api_unit_test/index.php (POST)
 edit_student:
 
 http://localhost/api_unit_test/index.php (POST)
+
+Sample Data:
 
 {
     "action" : "edit_student",
@@ -59,6 +66,8 @@ edit_teacher:
 
 http://localhost/api_unit_test/index.php (POST)
 
+Sample Data:
+
 {
     "action" : "edit_teacher",
     "user_parent_id" : 4,
@@ -74,6 +83,8 @@ http://localhost/api_unit_test/index.php (POST)
 change_password:
 
 http://localhost/api_unit_test/index.php (POST)
+
+Sample Data:
 
 {
     "action" : "change_password",
