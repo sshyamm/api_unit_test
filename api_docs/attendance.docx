@@ -1,0 +1,11 @@
+Updating attendance by class room ID
+
+http://localhost/api_unit_test/attendance.php (POST)
+
+Sample Data:
+
+{
+    "class_room_id" : 98,
+    "attendance": "Present"
+}
+=======================================================
