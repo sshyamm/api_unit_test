@@ -10,6 +10,7 @@ $dbPassword = ''; // Change this to your database password
 try {
     $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connection successfull";
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
     exit();

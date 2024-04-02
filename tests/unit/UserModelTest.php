@@ -1,8 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-require_once '../../config/config.php';
-require_once '../models/UserModel.php';
+require_once 'config/config.php';
+require_once 'models/UserModel.php';
 
 class UserModelTest extends TestCase
 {
@@ -11,14 +11,16 @@ class UserModelTest extends TestCase
 
     protected function setUp(): void
     {
+        global $db; // Access the $db variable from config.php
+        $this->db = $db; // Set $this->db to the database connection
         $this->userModel = new UserModel($this->db);
     }
 
     public function testCreateUser()
     {
         // Test creating a new user
-        $user_name = 'testuser';
-        $user_password = 'testpassword';
+        $user_name = 'Prakash';
+        $user_password = 'Prak@12345';
         $result = $this->userModel->createUser($user_name, $user_password);
         $this->assertTrue($result);
 
@@ -30,8 +32,8 @@ class UserModelTest extends TestCase
     public function testLoginUser()
     {
         // Test logging in with correct credentials
-        $user_name = 'testuser';
-        $user_password = 'testpassword';
+        $user_name = 'Karthik';
+        $user_password = 'Ka@12345';
         $this->userModel->createUser($user_name, $user_password);
         $result = $this->userModel->loginUser($user_name, $user_password);
         $this->assertTrue($result);
@@ -48,8 +50,8 @@ class UserModelTest extends TestCase
     public function testGetUserType()
     {
         // Test getting user type by email
-        $user_name = 'testuser';
-        $user_password = 'testpassword';
+        $user_name = 'Shyam';
+        $user_password = 'Shy@m2001';
         $this->userModel->createUser($user_name, $user_password);
         $result = $this->userModel->getUserTypeByEmail($user_name);
         $this->assertEquals('common', $result);

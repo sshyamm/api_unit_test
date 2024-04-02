@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'shyam/api_unit_test',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '3661a2452461d67a6e8cf631a8fe3a1cf24f61c0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -254,9 +254,9 @@
             'dev_requirement' => true,
         ),
         'shyam/api_unit_test' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '3661a2452461d67a6e8cf631a8fe3a1cf24f61c0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
