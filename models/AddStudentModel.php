@@ -10,7 +10,7 @@ class AddStudentModel {
     public function addStudentsToClass($class_id, $selected_students) {
         $check_sql = "SELECT COUNT(*) AS count FROM class_rooms WHERE class_parent_id = :class_id AND user_parent_id = :user_id";
         $check_stmt = $this->db->prepare($check_sql);
-        
+
         $insert_sql = "INSERT INTO class_rooms (user_parent_id, class_parent_id) VALUES (:user_id, :class_id)";
         $insert_stmt = $this->db->prepare($insert_sql);
 
@@ -27,6 +27,12 @@ class AddStudentModel {
             }
         }
         return true;
+    }
+    public function removeStudentFromClass($class_room_id) {
+        $delete_sql = "DELETE FROM class_rooms WHERE class_room_id = :class_room_id";
+        $delete_stmt = $this->db->prepare($delete_sql);
+        $delete_stmt->bindParam(':class_room_id', $class_room_id);
+        return $delete_stmt->execute();
     }
 }
 

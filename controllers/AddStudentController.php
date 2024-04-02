@@ -23,6 +23,19 @@ class AddStudentController {
             return array("success" => false, "message" => "Failed to add students to the class");
         }
     }
+    public function removeStudentFromClass($class_room_id) {
+        if (!$class_room_id) {
+            return array("success" => false, "message" => "Invalid class_room_id");
+        }
+
+        $result = $this->model->removeStudentFromClass($class_room_id);
+
+        if ($result) {
+            return array("success" => true, "message" => "Student removed from the class successfully");
+        } else {
+            return array("success" => false, "message" => "Failed to remove student from the class");
+        }
+    }
 }
 
 ?>

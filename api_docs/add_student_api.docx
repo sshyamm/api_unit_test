@@ -8,3 +8,15 @@ Sample Data:
     "class_id": 21,
     "selected_students": [1, 2, 3]
 }
+========================================================
+Removing the student using class room ID
+
+http://localhost/api_unit_test/add_student.php (POST)
+
+Sample Data:
+
+{
+    "action" : "remove_student",
+    "class_room_id": 98
+}
+========================================================

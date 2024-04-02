@@ -8,17 +8,32 @@ $data = json_decode($request_body, true);
 require_once 'controllers/AddStudentController.php';
 require_once 'config/config.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($data['class_id']) && isset($data['selected_students'])) {
-        $controller = new AddStudentController($db);
+$action = isset($data['action']) ? $data['action'] : '';
 
-        $response = $controller->addStudentsToClass($data['class_id'], $data['selected_students']);
+$controller = new AddStudentController($db);
+$response = array();
 
-        echo json_encode($response);
-    } else {
-        echo json_encode(array("success" => false, "message" => "Missing required data"));
-    }
-} else {
-    echo json_encode(array("success" => false, "message" => "Invalid request method"));
+switch ($action) {
+    case 'add_student':
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($data['class_id']) && isset($data['selected_students'])) {
+            $response = $controller->addStudentsToClass($data['class_id'], $data['selected_students']);
+        } else {
+            $response = array("success" => false, "message" => "Missing required data or invalid request method for adding students");
+        }
+        break;
+
+    case 'remove_student':
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($data['class_room_id'])) {
+            $response = $controller->removeStudentFromClass($data['class_room_id']);
+        } else {
+            $response = array("success" => false, "message" => "Missing class_room_id or invalid request method for removing student");
+        }
+        break;
+
+    default:
+        $response = array("success" => false, "message" => "Invalid action");
+        break;
 }
+
+echo json_encode($response);
 ?>
