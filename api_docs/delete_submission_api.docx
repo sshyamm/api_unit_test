@@ -1,0 +1,10 @@
+Deleting student's submission by task manager ID, 
+
+http://localhost/api_unit_test/api/task/74/deleteSubmission/ (POST)
+
+Sample Data : 
+
+{
+    "task_manager_id": 74
+}
+===================================================================
