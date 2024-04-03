@@ -10,5 +10,6 @@ RewriteRule ^api/user/([A-Za-z0-9]+)/change_password/?$ index.php?user_name=$1&a
 RewriteRule ^api/classes/?$ classes.php [QSA,L]
 RewriteRule ^api/([0-9]+)/add_student/?$ add_student.php?class_id=$1&action=add_student [QSA,L]
 RewriteRule ^api/([0-9]+)/remove_student/?$ add_student.php?class_room_id=$1&action=add_student [QSA,L]
-RewriteRule ^api/([0-9]+)/attendance/?$ attendance.php?class_room_id=$1&action=attendance [QSA,L]
+RewriteRule ^api/([0-9]+)/attendance/?$ attendance.php?class_room_id=$1[QSA,L]
 RewriteRule ^api/info/all_class_info/?$ class_info.php [QSA,L]
+RewriteRule ^api/([0-9]+)/evaluate/?$ evaluate.php?task_manager_id=$1 [QSA,L]

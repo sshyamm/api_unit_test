@@ -1,6 +1,6 @@
 Evaluating tasks against the task manager id, 
 
-http://localhost/api_unit_test/evaluate.php (POST)
+http://localhost/api_unit_test/api/73/evaluate/ (POST)
 
 Sample Data :
 
