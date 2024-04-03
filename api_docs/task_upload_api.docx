@@ -1,6 +1,6 @@
 Inserting a task for a class,
 
-http://localhost/api_unit_test/task_upload.php (POST)
+http://localhost/api_unit_test/api/task/21/uploadTask/ (POST)
 
 Sample Data : 
 
@@ -12,7 +12,7 @@ Sample Data :
 =======================================================
 Updating a task corresponding the class ID,
 
-http://localhost/api_unit_test/task_upload.php (POST)
+http://localhost/api_unit_test/api/task/71/editTask/ (POST)
 
 Sample Data : 
 
