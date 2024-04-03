@@ -1,0 +1,24 @@
+Inserting a task for a class,
+
+http://localhost/api_unit_test/task_upload.php (POST)
+
+Sample Data : 
+
+{
+    "task_desc" : "Creating a new task",
+    "task_deadline": "2024-04-02",
+    "class_id" : 21
+}
+=======================================================
+Updating a task corresponding the class ID,
+
+http://localhost/api_unit_test/task_upload.php (POST)
+
+Sample Data : 
+
+{
+    "task_desc" : "Updating the new task",
+    "task_deadline": "2024-04-02",
+    "edit_task_id" : 71
+}
+=======================================================
