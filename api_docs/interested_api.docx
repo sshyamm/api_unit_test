@@ -1,0 +1,11 @@
+Interest Register by user id and course id, 
+
+http://localhost/api_unit_test/api/interest/2/interested/ (POST)
+
+Sample Data :
+
+{
+  "user_id": "2", 
+  "course_id": "1"
+}
+=================================================================
