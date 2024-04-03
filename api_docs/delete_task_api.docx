@@ -1,0 +1,10 @@
+Deleting a task assigned by teacher, 
+
+http://localhost/api_unit_test/api/task/68/deleteTask/ (POST)
+
+Sample Data :
+
+{
+    "task_id": 68
+}
+================================================================
