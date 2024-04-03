@@ -1,17 +1,18 @@
 Adding Students to that class rooms
 
-http://localhost/api_unit_test/add_student.php (POST)
+http://localhost/api_unit_test/api/21/add_student/ (POST)
 
 Sample Data:
 
 {
+    "action" : "add_student",
     "class_id": 21,
     "selected_students": [1, 2, 3]
 }
 ========================================================
 Removing the student using class room ID
 
-http://localhost/api_unit_test/add_student.php (POST)
+http://localhost/api_unit_test/api/86/remove_student/ (POST)
 
 Sample Data:
 

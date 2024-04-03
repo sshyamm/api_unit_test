@@ -8,3 +8,5 @@ RewriteRule ^api/user/([0-9]+)/edit_student/?$ index.php?user_parent_id=$1&actio
 RewriteRule ^api/user/([0-9]+)/edit_teacher/?$ index.php?user_parent_id=$1&action=edit_teacher [QSA,L]
 RewriteRule ^api/user/([A-Za-z0-9]+)/change_password/?$ index.php?user_name=$1&action=change_password [QSA,L]
 RewriteRule ^api/classes/?$ classes.php [QSA,L]
+RewriteRule ^api/([0-9]+)/add_student/?$ add_student.php?class_id=$1&action=add_student [QSA,L]
+RewriteRule ^api/([0-9]+)/remove_student/?$ add_student.php?class_room_id=$1&action=add_student [QSA,L]
