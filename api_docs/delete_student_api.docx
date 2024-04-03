@@ -1,0 +1,10 @@
+Deleting class student via class room ID, 
+
+http://localhost/api_unit_test/api/task/87/deleteStudent/ (POST)
+
+Sample Data :
+
+{
+    "class_room_id": 87
+}
+==================================================================

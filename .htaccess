@@ -17,3 +17,4 @@ RewriteRule ^api/class/([0-9]+)/startendclass/?$ startendClass.php?class_id=$1&a
 RewriteRule ^api/class/([0-9]+)/startendclass/?$ startendClass.php?class_id=$1&action=end
 RewriteRule ^api/task/([0-9]+)/uploadTask/?$ task_upload.php?class_id=$1
 RewriteRule ^api/task/([0-9]+)/editTask/?$ task_upload.php?edit_task_id=$1
+RewriteRule ^api/task/([0-9]+)/deleteStudent/?$ delete_student.php?class_room_id=$1
