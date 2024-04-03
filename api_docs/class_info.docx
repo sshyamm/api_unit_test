@@ -1,6 +1,6 @@
 Displaying the class information of that particular user only:
 
-http://localhost/api_unit_test/class_info.php (POST)
+http://localhost/api_unit_test/api/info/all_class_info/ (POST)
 
 Sample Data:
 
