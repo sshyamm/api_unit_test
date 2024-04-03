@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $task_desc = $data['task_desc'];
         $task_deadline = $data['task_deadline'];
 
-        $task_file = isset($data['task_file']) ? $data['task_file'] : null;
+        $task_file = isset($_FILES['task_file']) ? $_FILES['task_file'] : null;
         $class_id = isset($data['class_id']) ? $data['class_id'] : null;
         $edit_task_id = isset($data['edit_task_id']) ? $data['edit_task_id'] : null;
 

@@ -10,7 +10,6 @@ class TaskController {
     }
 
     public function handleTaskRequest($task_desc, $task_deadline, $task_file, $class_id, $edit_task_id) {
-        // Validate inputs
         if (!$task_desc || !$task_deadline) {
             return json_encode(array("success" => false, "message" => "Missing or null parameters."));
         }

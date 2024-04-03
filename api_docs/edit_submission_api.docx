@@ -1,0 +1,11 @@
+Editing the submission submitted by student, 
+
+http://localhost/api_unit_test/api/task/73/editSubmission/ (POST)
+
+Sample Data : 
+
+{
+  "task_manager_id": "73", 
+  "remark": "Updated remark"
+}
+==================================================================

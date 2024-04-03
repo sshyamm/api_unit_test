@@ -20,3 +20,4 @@ RewriteRule ^api/task/([0-9]+)/editTask/?$ task_upload.php?edit_task_id=$1
 RewriteRule ^api/task/([0-9]+)/deleteStudent/?$ delete_student.php?class_room_id=$1
 RewriteRule ^api/task/([0-9]+)/deleteSubmission/?$ delete_submission.php?task_manager_id=$1
 RewriteRule ^api/task/([0-9]+)/deleteTask/?$ delete_task.php?task_id=$1
+RewriteRule ^api/task/([0-9]+)/editSubmission/?$ edit_submission.php?task_manager_id=$1

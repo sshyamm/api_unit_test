@@ -26,20 +26,18 @@ class TaskModel {
             return "task_not_found"; 
         }
 
-        if (isset($_FILES['task_file']) && $_FILES['task_file']['error'] === UPLOAD_ERR_OK) {
-            $file_name = $_FILES['task_file']['name'];
-            $file_tmp = $_FILES['task_file']['tmp_name'];
-    
+        $new_file_name = null;
+        if ($task_file && $task_file['error'] === UPLOAD_ERR_OK) {
+            $file_name = $task_file['name'];
+            $file_tmp = $task_file['tmp_name'];
+
             $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
             $new_file_name = pathinfo($file_name, PATHINFO_FILENAME) . '_' . date('YmdHis') . '.' . $file_ext;
             $upload_dir = "/opt/lampp/htdocs/music_academy/admin/getForms/uploads/";
-    
+
             if (!move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
-                echo json_encode(array("success" => false, "message" => "Failed to move uploaded file."));
-                exit();
+                return "file_upload_error";
             }
-        } else {
-            $new_file_name = null;
         }
 
         $sql = "UPDATE class_tasks SET task_desc = :task_desc, task_deadline = :task_deadline";
@@ -54,24 +52,23 @@ class TaskModel {
             $stmt->bindParam(':task_file', $new_file_name);
         }
         $stmt->bindParam(':task_id', $edit_task_id);
+        
         return $stmt->execute();
     }
 
     private function insertTask($task_desc, $task_deadline, $task_file, $class_id) {
-        if (isset($_FILES['task_file']) && $_FILES['task_file']['error'] === UPLOAD_ERR_OK) {
-            $file_name = $_FILES['task_file']['name'];
-            $file_tmp = $_FILES['task_file']['tmp_name'];
-    
+        $new_file_name = null;
+        if ($task_file && $task_file['error'] === UPLOAD_ERR_OK) {
+            $file_name = $task_file['name'];
+            $file_tmp = $task_file['tmp_name'];
+
             $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
             $new_file_name = pathinfo($file_name, PATHINFO_FILENAME) . '_' . date('YmdHis') . '.' . $file_ext;
             $upload_dir = "/opt/lampp/htdocs/music_academy/admin/getForms/uploads/";
-    
+
             if (!move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
-                echo json_encode(array("success" => false, "message" => "Failed to move uploaded file."));
-                exit();
+                return "file_upload_error";
             }
-        } else {
-            $new_file_name = null;
         }
 
         $query = "SELECT course_parent_id FROM classes WHERE class_id = :class_id";
@@ -93,6 +90,7 @@ class TaskModel {
         $stmt->bindParam(':class_id', $class_id);
         $stmt->bindParam(':course_parent_id', $course_parent_id);
         $stmt->bindParam(':task_deadline', $task_deadline);
+
         return $stmt->execute();
     }
 }
