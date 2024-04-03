@@ -1,0 +1,15 @@
+Evaluating tasks against the task manager id, 
+
+http://localhost/api_unit_test/evaluate.php (POST)
+
+Sample Data :
+
+{
+    "task_manager_id" : 73,
+    "comment" : "Nice",
+    "grading": "2"
+}
+
+
+(Task manager ID and comment is mandatory)
+===================================================
