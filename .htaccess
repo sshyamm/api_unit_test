@@ -13,3 +13,5 @@ RewriteRule ^api/([0-9]+)/remove_student/?$ add_student.php?class_room_id=$1&act
 RewriteRule ^api/([0-9]+)/attendance/?$ attendance.php?class_room_id=$1[QSA,L]
 RewriteRule ^api/info/all_class_info/?$ class_info.php [QSA,L]
 RewriteRule ^api/([0-9]+)/evaluate/?$ evaluate.php?task_manager_id=$1 [QSA,L]
+RewriteRule ^api/class/([A-Za-z0-9]+)/startendclass/?$ startendClass.php?class_id=$1&action=start
+RewriteRule ^api/class/([A-Za-z0-9]+)/startendclass/?$ startendClass.php?class_id=$1&action=end
