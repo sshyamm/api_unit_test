@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $request_body = file_get_contents('php://input');
     $data = json_decode($request_body, true);
 
-    require_once 'controllers/CommentController.php';
+    require_once 'controllers/CourseCommentController.php';
     require_once 'config/config.php';
 
     $controller = new CommentController($db);
-    echo $controller->handleCommentRequest($data['user_id'], $data['class_id'], $data['comment']);
+    echo $controller->handleCommentRequest($data['comment'], $data['user_id'], $data['course_id']);
 } else {
     echo json_encode(array("success" => false, "message" => "Invalid request method."));
 }

@@ -1,0 +1,12 @@
+Inserting a course comment through course id and user id, 
+
+http://localhost/api_unit_test/api/comment/1/courseComment/ (POST)
+
+Sample Data :
+
+{
+  "user_id": "1", 
+  "course_id": "1",
+  "comment" : "Hi , Im Shyam"
+}
+==================================================================
