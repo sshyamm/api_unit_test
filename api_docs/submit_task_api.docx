@@ -1,0 +1,10 @@
+Viewing the submission details of the student, 
+
+http://localhost/api_unit_test/api/task/67/submit_task/21 (GET)
+
+You need to give the user id in raw data :
+
+{
+    "user_id" : 1
+}
+==================================================================
