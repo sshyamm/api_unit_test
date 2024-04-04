@@ -7,12 +7,10 @@ class TaskModel {
     }
 
     public function insertTask($data) {
-        // Process data and insert task into database
         $remark = $data['remark'];
         $task_parent_id = isset($data['task_id']) ? $data['task_id'] : null;
         $user_parent_id = isset($data['user_id']) ? $data['user_id'] : null;
 
-        // Validate if task_parent_id and user_parent_id are set
         if (is_null($task_parent_id) || is_null($user_parent_id)) {
             return "Task ID and user ID are required.";
         }
@@ -33,7 +31,6 @@ class TaskModel {
             $file_path = $new_file_name;
         }
 
-        // Inserting current date and time into last_updated field
         $last_updated = date('Y-m-d H:i:s');
 
         $sql = "INSERT INTO tasks (task_parent_id, user_parent_id, remark, file_path, last_updated) VALUES (:task_parent_id, :user_parent_id, :remark, :file_path, :last_updated)";

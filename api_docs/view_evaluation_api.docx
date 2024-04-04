@@ -1,0 +1,6 @@
+View evaluation details, 
+
+http://localhost/api_unit_test/api/evaluate/77/view_evaluation/ (GET)
+
+(Just run with appropriate task manager ID)
+======================================================================

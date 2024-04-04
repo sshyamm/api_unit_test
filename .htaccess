@@ -29,3 +29,4 @@ RewriteRule ^api/task/([0-9]+)/addTask/?$ add_submission.php?task_parent_id=$1 [
 RewriteRule ^api/class/([0-9]+)/?$ class_details.php?class_id=$1 [QSA,L]
 RewriteRule ^api/task/([0-9]+)/submit_task/([0-9]+)/?$ submit_task.php?task_id=$1&class_id=$2 [QSA,L]
 RewriteRule ^api/task/([0-9]+)/view_task/([0-9]+)/?$ view_task.php?task_id=$1&class_id=$2 [QSA,L]
+RewriteRule ^api/evaluate/([0-9]+)/view_evaluation/?$ view_evaluation.php?task_manager_id=$1 [QSA,L]
