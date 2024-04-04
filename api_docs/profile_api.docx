@@ -1,0 +1,23 @@
+For student profile, 
+
+http://localhost/api_unit_test/api/1/profile/ (POST)
+
+Sample Data :
+
+{
+    "user_id" : 1, 
+    "user_type" : "Student"
+}
+=======================================================
+
+For Teacher profile, 
+
+http://localhost/api_unit_test/api/5/profile/ (POST)
+
+Sample Data : 
+
+{
+    "user_id" : 5, 
+    "user_type" : "Teacher"
+}
+======================================================

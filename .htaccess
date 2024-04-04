@@ -33,3 +33,4 @@ RewriteRule ^api/evaluate/([0-9]+)/view_evaluation/?$ view_evaluation.php?task_m
 RewriteRule ^api/class/([0-9]+)/addStudent/?$ add_students_to_class.php?class_id=$1 [QSA,L]
 RewriteRule ^api/course/([0-9]+)/courseDetails/?$ course_details.php?course_id=$1 [QSA,L]
 RewriteRule ^api/index/?$ indexImage.php [QSA,L]
+RewriteRule ^api/([0-9]+)/profile/?$ profile.php?user_id=$1 [QSA,L]
