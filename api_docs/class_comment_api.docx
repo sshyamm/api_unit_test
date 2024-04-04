@@ -1,0 +1,12 @@
+Inserting a class comment vis class ID and user ID, 
+
+http://localhost/api_unit_test/api/comment/21/classComment/ (POST)
+
+Sample Data :
+
+{
+  "user_id": "1", 
+  "class_id": "21",
+  "comment" : "Hi , Im Shyam"
+}
+====================================================================

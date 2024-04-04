@@ -22,3 +22,4 @@ RewriteRule ^api/task/([0-9]+)/deleteSubmission/?$ delete_submission.php?task_ma
 RewriteRule ^api/task/([0-9]+)/deleteTask/?$ delete_task.php?task_id=$1
 RewriteRule ^api/task/([0-9]+)/editSubmission/?$ edit_submission.php?task_manager_id=$1
 RewriteRule ^api/interest/([0-9]+)/interested/?$ interested.php?user_id=$1
+RewriteRule ^api/comment/([0-9]+)/classComment/?$ class_comment.php?class_id=$1
