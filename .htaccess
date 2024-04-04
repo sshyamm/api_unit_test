@@ -26,3 +26,4 @@ RewriteRule ^api/comment/([0-9]+)/classComment/?$ class_comment.php?class_id=$1 
 RewriteRule ^api/comment/([0-9]+)/courseComment/?$ course_comment.php?course_id=$1 [QSA,L]
 RewriteRule ^api/email/?$ subscription.php [QSA,L]
 RewriteRule ^api/task/([0-9]+)/addTask/?$ add_submission.php?task_parent_id=$1 [QSA,L]
+RewriteRule ^api/class/([0-9]+)/?$ class_details.php?class_id=$1 [QSA,L]
