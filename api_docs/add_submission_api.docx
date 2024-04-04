@@ -1,0 +1,12 @@
+Adding a task submission, 
+
+http://localhost/api_unit_test/api/task/68/addTask/ (POST)
+
+Sample Data :
+
+{
+  "task_id": 68,
+  "user_id" : 1,
+  "remark" : "apr 4 11:49"
+}
+============================================================
