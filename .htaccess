@@ -13,14 +13,15 @@ RewriteRule ^api/([0-9]+)/remove_student/?$ add_student.php?class_room_id=$1&act
 RewriteRule ^api/([0-9]+)/attendance/?$ attendance.php?class_room_id=$1[QSA,L]
 RewriteRule ^api/info/all_class_info/?$ class_info.php [QSA,L]
 RewriteRule ^api/([0-9]+)/evaluate/?$ evaluate.php?task_manager_id=$1 [QSA,L]
-RewriteRule ^api/class/([0-9]+)/startendclass/?$ startendClass.php?class_id=$1&action=start
-RewriteRule ^api/class/([0-9]+)/startendclass/?$ startendClass.php?class_id=$1&action=end
-RewriteRule ^api/task/([0-9]+)/uploadTask/?$ task_upload.php?class_id=$1
-RewriteRule ^api/task/([0-9]+)/editTask/?$ task_upload.php?edit_task_id=$1
-RewriteRule ^api/task/([0-9]+)/deleteStudent/?$ delete_student.php?class_room_id=$1
-RewriteRule ^api/task/([0-9]+)/deleteSubmission/?$ delete_submission.php?task_manager_id=$1
-RewriteRule ^api/task/([0-9]+)/deleteTask/?$ delete_task.php?task_id=$1
-RewriteRule ^api/task/([0-9]+)/editSubmission/?$ edit_submission.php?task_manager_id=$1
-RewriteRule ^api/interest/([0-9]+)/interested/?$ interested.php?user_id=$1
-RewriteRule ^api/comment/([0-9]+)/classComment/?$ class_comment.php?class_id=$1
-RewriteRule ^api/comment/([0-9]+)/courseComment/?$ course_comment.php?course_id=$1
+RewriteRule ^api/class/([0-9]+)/startendclass/?$ startendClass.php?class_id=$1&action=start [QSA,L]
+RewriteRule ^api/class/([0-9]+)/startendclass/?$ startendClass.php?class_id=$1&action=end [QSA,L]
+RewriteRule ^api/task/([0-9]+)/uploadTask/?$ task_upload.php?class_id=$1 [QSA,L]
+RewriteRule ^api/task/([0-9]+)/editTask/?$ task_upload.php?edit_task_id=$1 [QSA,L]
+RewriteRule ^api/task/([0-9]+)/deleteStudent/?$ delete_student.php?class_room_id=$1 [QSA,L]
+RewriteRule ^api/task/([0-9]+)/deleteSubmission/?$ delete_submission.php?task_manager_id=$1 [QSA,L]
+RewriteRule ^api/task/([0-9]+)/deleteTask/?$ delete_task.php?task_id=$1 [QSA,L]
+RewriteRule ^api/task/([0-9]+)/editSubmission/?$ edit_submission.php?task_manager_id=$1 [QSA,L]
+RewriteRule ^api/interest/([0-9]+)/interested/?$ interested.php?user_id=$1 [QSA,L]
+RewriteRule ^api/comment/([0-9]+)/classComment/?$ class_comment.php?class_id=$1 [QSA,L]
+RewriteRule ^api/comment/([0-9]+)/courseComment/?$ course_comment.php?course_id=$1 [QSA,L]
+RewriteRule ^api/email/?$ subscription.php [QSA,L]

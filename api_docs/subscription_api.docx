@@ -1,0 +1,10 @@
+Subscribing newsletter through email, 
+
+http://localhost/api_unit_test/api/email/ (POST)
+
+Sample Data :
+
+{
+  "email": "shyam@gmail.com"
+}
+=================================================
