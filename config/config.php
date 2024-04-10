@@ -3,8 +3,8 @@
 // Database configuration
 $dbHost = 'localhost'; // Change this to your database host
 $dbName = 'music_academy'; // Change this to your database name
-$dbUser = 'root'; // Change this to your database username
-$dbPassword = ''; // Change this to your database password
+$dbUser = 'phpmyadmin'; // Change this to your database username
+$dbPassword = 'root'; // Change this to your database password
 
 // Establish database connection
 try {
