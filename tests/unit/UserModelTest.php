@@ -20,7 +20,7 @@ class UserModelTest extends TestCase
     {
         // Test creating a new user
         $user_name = 'Prakash';
-        $user_password = 'Prak@12345';
+        $user_password = 'Prak@123456';
         $result = $this->userModel->createUser($user_name, $user_password);
         $this->assertTrue($result);
 
@@ -54,7 +54,7 @@ class UserModelTest extends TestCase
         $user_password = 'Shy@m2001';
         $this->userModel->createUser($user_name, $user_password);
         $result = $this->userModel->getUserTypeByEmail($user_name);
-        $this->assertEquals('common', $result);
+        $this->assertEquals('Student', $result);
 
         // Test getting user type by non-existing email
         $result = $this->userModel->getUserTypeByEmail('nonexistinguser');

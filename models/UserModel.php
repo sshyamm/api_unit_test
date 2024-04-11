@@ -34,6 +34,11 @@ class UserModel {
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":user_name", $user_name);
         $stmt->execute();
+
+        if ($stmt->rowCount() === 0) {
+            return null; 
+        }
+
         return $stmt->fetch(PDO::FETCH_COLUMN);
     }
 
